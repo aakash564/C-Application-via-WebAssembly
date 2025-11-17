@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minimal C Wasm App</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; margin: 0; background-color: #f4f4f9; color: #333; }
+        #interaction { margin-top: 20px; border: 1px solid #ccc; padding: 20px; border-radius: 8px; background-color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        #output { 
+            white-space: pre-wrap; 
+            background-color: #282c34; 
+            color: #ccc; 
+            padding: 15px; 
+            min-height: 150px; 
+            width: 80vw; 
+            max-width: 500px; 
+            margin-top: 15px; 
+            border-radius: 4px; 
+            overflow-y: auto; 
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+        button { padding: 10px 20px; cursor: pointer; border: none; border-radius: 4px; background-color: #007bff; color: white; transition: background-color 0.3s; margin-left: 10px;}
+        button:hover { background-color: #0056b3; }
+        input[type="number"] { padding: 8px; width: 60px; border: 1px solid #ccc; border-radius: 4px; }
+        label { margin-right: 10px; }
+        #result { font-weight: bold; color: #dc3545; }
+    </style>
+</head>
+<body>
+    <h1>C Application via WebAssembly</h1>
+
+    <div id="interaction">
+        <label for="input_n">N (0-45):</label>
+        <input type="number" id="input_n" value="10" min="0" max="45">
+        <button onclick="calculateFib()">Calculate Fibonacci (C function)</button>
+        <p>Result: <span id="result">---</span></p>
+    </div>
+
+    <h2>C Stdout/Stderr Output (Console Redirection)</h2>
+    <div id="output">Initializing environment...</div>
+
+    <script src="bridge.js"></script>
+    <!-- main.js simulates the Emscripten glue code necessary to load and run the compiled C code (main.wasm) -->
+    <script src="main.js"></script> 
+</body>
+</html>
